@@ -1,0 +1,157 @@
+// Variabler
+$flex: flex;
+$center: center;
+$color: #333333;
+$color-w: #ffffff;
+$bold: bold;
+$size: 20px;
+$margin: 50px 0;
+$none: none;
+
+// @mixins
+@mixin flex {
+    display: $flex;
+    flex-direction: column;
+}
+
+@mixin flex-center {
+    display: $flex;
+    justify-content: $center;
+}
+
+@mixin flex-space {
+    display: $flex;
+    justify-content: space-between;
+}
+
+@mixin bold-text {
+    padding: $size;
+    font-weight: $bold;
+}
+
+@mixin hover {
+    text-decoration: $none;
+    color: darken($color-w, 50%);
+}
+
+* {
+    box-sizing: border-box;
+    margin: ($size)-($size);
+    padding: ($size)-($size);
+    color: $color-w;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.header {
+    @include flex;
+    background-color: $color;
+    .caption1 {
+        @include flex-center;
+        h1 {
+            @include bold-text;
+            font-size: ($size)+30px;
+        }
+    }
+    .navigation {
+        @include flex-center;
+        padding: $size;
+        ul {
+            @include flex-space;
+            width: ($size)+980px;
+            list-style: $none;
+            li {
+                a {
+                    font-weight: $bold;
+                    &:hover {
+                        @include hover;
+                    }
+                }
+                .active {
+                    text-decoration: $none;
+                    &:hover {
+                        text-decoration: $none;
+                        color: $color-w;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.text_container {
+    @include flex-center;
+    margin: $margin;
+    .text {
+        width: ($size)+680px;
+        .caption2 {
+            @include flex-center;
+            h2 {
+                @include bold-text;
+                color: $color;
+                font-size: ($size)+($size);
+            }
+        }
+        p {
+            color: $color;
+            padding: $size;
+        }
+    }
+}
+
+.movies_container {
+    @include flex;
+    align-items: $center;
+    margin: $margin;
+    .caption3 {
+        h3{
+            @include bold-text;
+            font-size: ($size)+10px;
+        }
+    }
+    .movies {
+        @include flex-space;
+        width: ($size)+1380px;
+        .movie {
+            @include flex;
+            background-color: $color;
+            width: ($size)+405px;
+            .caption4 {
+                @include flex-center;
+                h4 {
+                    @include bold-text;
+                    font-size: $size;
+                }
+            }
+            figure {
+                img {
+                    width: 100%;
+                }
+                figcaption {
+                    padding: $size;
+                }
+            }
+        }
+    }
+}
+
+.footer {
+    @include flex-center;
+    background-color: $color;
+    p {
+        padding: $size;
+    }
+    ul {
+        @include flex-space;
+        list-style: $none;
+        width: ($size)+280px;
+        padding: $size;
+        li{
+            a {
+                font-weight: $bold;
+                &:hover {
+                    @include hover;
+                }
+            }
+        }
+    }
+}
